@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Crypto News Network</h1>
+  <p class="lead">Your source for up to the minute Cryptocurrency and Blockchain news.</p>
+
+</div>
+
+
+<table class="table table-dark table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">24 Hrs High</th>
+      <th scope="col">24 Hrs Low</th>
+      <th scope="col">Market Cap</th>
+    </tr>
+  </thead>
+
+  {% for key, value in price.DISPLAY.items %}
+  <tbody>
+    <tr>
+      
+      <td>{{key}}</td>
+      <td>{{value.USD.PRICE}}</td>
+      <td>{{value.USD.HIGHDAY}}</td>
+      <td>{{value.USD.LOWDAY}}</td>
+      <td>{{value.USD.MKTCAP}}</td>
+    </tr>
+ 
+
+    </tbody>
+{% endfor %}
+  
+</table>
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        {% for x in api.Data %}
+        <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+        <img src="{{x.imageurl}}" class="card-img-top" alt="{{x.sourxe}}">
+        <div class="card-body">
+            <h5 class="card-title">{{x.title}}</h5>
+            <p class="card-text">{{x.body}}</p>
+            <a href="{{x.url}}" class="btn btn-secondary">Read More..</a>
+        </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
